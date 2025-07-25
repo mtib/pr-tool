@@ -13,8 +13,8 @@ def run_command(cmd):
 
 def main():
     parser = argparse.ArgumentParser(description="Generate PR content using OpenAI and a template.")
-    parser.add_argument("template", help="Name of the template file in the current folder")
-    parser.add_argument("base_branch", help="Base branch to compare against")
+    parser.add_argument("template", help="Name of the template file in the current folder", default="default.md")
+    parser.add_argument("base_branch", help="Base branch to compare against", default="staging")
     args = parser.parse_args()
 
     # Load template (relative to script location)
@@ -46,7 +46,10 @@ Git log:
 Git diff:
 {diff}
 
-Fill in the template above to generate a pull request description based on the changes and commits."""
+Fill in the template above to generate a pull request description based on the changes and commits.
+Be concise and focus on the most important changes. Use the headings provided in the template.
+Do not include any additional explanations or context outside of information that is clearly relevant to the changes.
+Use abbreviations and concise language where possible."""
 
     # Call OpenAI
     response = client.chat.completions.create(
