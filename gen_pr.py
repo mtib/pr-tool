@@ -72,7 +72,7 @@ Your entire response should be a complete github pull request description that f
         model="gpt-5",
         reasoning_effort='high',
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=1024,
+        max_completion_tokens=1024,
         temperature=0.5,
     )
     pr_content = response.choices[0].message.content.strip()
